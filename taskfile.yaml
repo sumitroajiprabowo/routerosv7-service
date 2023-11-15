@@ -1,0 +1,51 @@
+version: '3'
+
+vars:
+  EXE: sumitroajiprabowo/routerosv7-service{{exeExt}}
+
+
+tasks:
+  default:
+    cmds:
+      - task: dev
+
+  dev:
+    desc: Start the local environment
+    cmds:
+      - air -c .air.toml
+
+  go-install:
+    cmds:
+      - go install {{.REPO}}
+
+  dl-deps:
+    desc: Install tools required to run/build this app
+    cmds:
+      - task: go-install
+        vars: { REPO: github.com/swaggo/swag/cmd/swag@latest }
+      - task: go-install
+        vars: { REPO: github.com/cosmtrek/air@latest }
+      - task: tidy
+
+  init:
+    desc: Initialize the environment
+    deps: [ dl-deps ]
+
+  tidy:
+    desc: Clean up dependencies
+    cmds:
+      - go mod tidy
+
+  swag:
+    desc: Generate swagger docs
+    cmds:
+      - swag init -g cmd/api/main.go -o docs
+
+  app-build:
+    desc: Build the app binary
+    cmds:
+      - CGO_ENABLED=0 go build -o {{.EXE}} ./cmd/api/main.go
+    sources:
+      - ./**/*.go
+    generates:
+      - ./{{.EXE}}

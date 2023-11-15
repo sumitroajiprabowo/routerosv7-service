@@ -20,6 +20,6 @@ logs.txt
 secret.md
 .env
 tmp/*
-.task/*
+.task
 gen/*
 /sumitroajiprabowo/

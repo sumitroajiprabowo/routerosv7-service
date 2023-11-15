@@ -1,0 +1,215 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "This is a sample server for RouterOS v7 Service API Documentation.",
+        "title": "RouterOS v7 Service API Documentation",
+        "contact": {
+            "name": "Megadata Pemalang",
+            "url": "https://github.com/megadata-dev",
+            "email": "danu@megadata.net.id"
+        },
+        "license": {
+            "name": "MIT",
+            "url": "https://github.com/megadata-dev/routerosv7-service/blob/main/LICENSE"
+        },
+        "version": "1.0.0"
+    },
+    "host": "localhost:3000",
+    "basePath": "/api/v1",
+    "paths": {
+        "/ppp/secret/add": {
+            "post": {
+                "description": "Add PPP Secret",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PPP"
+                ],
+                "summary": "Add PPP Secret",
+                "parameters": [
+                    {
+                        "description": "Add PPP Secret",
+                        "name": "pppSecret",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.CreatePPPoERequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "409": {
+                        "description": "Conflict",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/ppp/secret/delete": {
+            "delete": {
+                "description": "Delete PPP Secret",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "PPP"
+                ],
+                "summary": "Delete PPP Secret",
+                "parameters": [
+                    {
+                        "description": "Delete PPP Secret",
+                        "name": "pppSecret",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/request.DeletePPPoERequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No Content",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/model.WebResponse"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "model.WebResponse": {
+            "type": "object",
+            "properties": {
+                "code": {
+                    "type": "integer"
+                },
+                "message": {},
+                "status": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.CreatePPPoERequest": {
+            "type": "object",
+            "required": [
+                "password_pppoe",
+                "profile_pppoe",
+                "remote-address_pppoe",
+                "router_ip_addr",
+                "router_password",
+                "router_username",
+                "username_pppoe"
+            ],
+            "properties": {
+                "password_pppoe": {
+                    "type": "string"
+                },
+                "profile_pppoe": {
+                    "type": "string"
+                },
+                "remote-address_pppoe": {
+                    "type": "string"
+                },
+                "router_ip_addr": {
+                    "type": "string"
+                },
+                "router_password": {
+                    "type": "string"
+                },
+                "router_username": {
+                    "type": "string"
+                },
+                "username_pppoe": {
+                    "type": "string"
+                }
+            }
+        },
+        "request.DeletePPPoERequest": {
+            "type": "object",
+            "required": [
+                "remote-address_pppoe",
+                "router_ip_addr",
+                "router_password",
+                "router_username"
+            ],
+            "properties": {
+                "remote-address_pppoe": {
+                    "type": "string"
+                },
+                "router_ip_addr": {
+                    "type": "string"
+                },
+                "router_password": {
+                    "type": "string"
+                },
+                "router_username": {
+                    "type": "string"
+                }
+            }
+        }
+    }
+}
