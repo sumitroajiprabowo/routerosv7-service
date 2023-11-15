@@ -20,5 +20,5 @@ import (
 // @license.name MIT
 // @license.url https://github.com/megadata-dev/routerosv7-service/blob/main/LICENSE
 func main() {
-	app.InitServerHTTP()
+	app.InitServerHTTP() // Initialize server
 }
