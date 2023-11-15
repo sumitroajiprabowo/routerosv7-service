@@ -101,8 +101,9 @@ func (p *pppSecretRepository) DeletePPPSecret(ctx *fiber.Ctx, id string, request
 	// Create a new DeleteRequest using the constructor
 	_, err := routerosv7_restfull_api.Remove(ctx.Context(), request.RouterIpAddr, request.RouterUsername,
 		request.RouterPassword, cmd)
-
-	utils.IfError(err) // If error return 404 Not Found
+	if err == nil {
+		return err // Return error message
+	}
 
 	// Return nil if success
 	return nil
