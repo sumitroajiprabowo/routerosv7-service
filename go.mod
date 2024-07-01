@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/universal-translator v0.18.1
 	github.com/go-playground/validator/v10 v10.16.0
 	github.com/gofiber/contrib/swagger v1.1.0
-	github.com/gofiber/fiber/v2 v2.52.1
+	github.com/gofiber/fiber/v2 v2.52.5
 	github.com/sumitroajiprabowo/routerosv7-restfull-api v1.0.0
 	github.com/swaggo/swag v1.16.2
 )
